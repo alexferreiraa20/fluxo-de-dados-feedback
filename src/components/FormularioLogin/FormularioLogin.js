@@ -8,21 +8,27 @@ import {
 } from "../FormularioPostagem/styled";
 
 const FormularioLogin = (props) => {
-  const login = () => {
-    props.setPageFlow(2);
-  };
+  
+
+  function onChangeNome (e) {
+    props.setNome(e.target.value)
+  }
+
+  function onChangeFotoPerfil (e){
+    props.setFotoPerfil(e.target.value)
+  }
   return (
     <FormContainer>
       <Form>
         <StyledLabel>
           Nome:
-          <Input type={"text"} />
+          <Input type={"text"} value={props.nome} onChange={onChangeNome} />
         </StyledLabel>
         <StyledLabel>
           Foto de Perfil
-          <Input type={"text"} />
+          <Input type={"text"} value={props.fotoPerfil} onChange={onChangeFotoPerfil} />
         </StyledLabel>
-        <SendButton onClick={login}>Fazer Login</SendButton>
+        <SendButton onClick={props.login}>Fazer Login</SendButton>
       </Form>
     </FormContainer>
   );

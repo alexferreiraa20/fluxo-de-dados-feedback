@@ -19,20 +19,61 @@ const Container = styled.div`
 `;
 
 function App() {
+
   const [pageFlow, setPageFlow] = useState(1);
+  const [nome, setNome] = useState("")
+  const [fotoPerfil, setFotoPerfil] = useState("")
+  const [fotoPerfilUsuario, setFotoPerfilUsuario] = useState("")
+  const [nomeUsuario, setNomeUsuario] = useState("")
+  const [tituloImagem, setTituloImagem] = useState("")
+  const [imagem, setImagem] = useState("")
+  const [descricaoImagem, setDescricaoImagem] = useState("")
+
+
+  let infoUsuario = {nomeUsuario, fotoPerfilUsuario}
+
+  const login = (event) =>{
+    setPageFlow(2);
+    setNomeUsuario(nome)
+    setFotoPerfilUsuario(fotoPerfil)
+  }
   return (
     <>
       <GlobalStyle />
       <Container>
         <aside>
-          <Header />
+          <Header 
+          infoUsuarioNome = {infoUsuario.nomeUsuario}
+          infoUsuarioFoto = {infoUsuario.fotoPerfilUsuario}
+          />
           {pageFlow === 1 ? (
-            <FormularioLogin setPageFlow={setPageFlow} />
+            <FormularioLogin 
+            nome={nome}
+            setPageFlow={setPageFlow} 
+            setNome={setNome}
+            setPerfil = {fotoPerfil}
+            setFotoPerfil={setFotoPerfil}
+            login={login}
+            />
           ) : (
-            <FormularioPostagem />
+            <FormularioPostagem 
+            tituloImagem={tituloImagem}
+            setTituloImagem={setTituloImagem}
+            imagem={imagem}
+            setImagem={setImagem}
+            descricaoImagem={descricaoImagem}
+            setDescricaoImagem={setDescricaoImagem}
+            />
           )}
         </aside>
-        <TelaDaPostagem />
+        <TelaDaPostagem 
+         tituloImagem={tituloImagem}
+         setTituloImagem={setTituloImagem}
+         imagem={imagem}
+         setImagem={setImagem}
+         descricaoImagem={descricaoImagem}
+         setDescricaoImagem={setDescricaoImagem}
+        />
       </Container>
     </>
   );
